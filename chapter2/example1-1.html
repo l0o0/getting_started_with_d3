@@ -15,7 +15,15 @@
                   .text(function (d) {
                       return d.name + ": " + d.status;
                   });
-            }
+				d3.selectAll("li")
+				  .style("font-weight", function (d) {
+					  if (d.status  == "GOOD SERVICE"){
+						  return "normal";
+					  } else {
+						  return "bold";
+					  }
+				  });
+            };
         </script>
     </head>
     <body>
