@@ -15,6 +15,27 @@
                   .text(function (d) {
                       return d.name + ": " + d.status;
                   });
+                d3.selectAll("li")
+                    .style("font-weight", function(d) {
+                        if (d.status == "GOOD SERVICE"){
+                            return "normal";
+                        } else {
+                            return "bold";
+                        }
+                    });
+            }
+            function draw1(data) {
+                d3.select('body')
+                  .append('div')
+                    .attr('class', 'chart')
+                  .selectAll(".bar")
+                  .data(data.cash)
+                  .enter()
+                  .append("div")
+                    .attr("class","bar")
+                    .style("width", function(d) {return d.count/100 + "px"})
+                    .style('outline', "1px solid black")
+                    .text(function(d){return Math.round(d.count)});
             }
         </script>
     </head>
@@ -22,6 +43,10 @@
         <h1>Headline here</h1>
         <script>
             d3.json("./service_status.json", draw);
+        </script>
+        <h1>Headline2</h1>
+        <script>
+            d3.json("./plaza_traffic.json", draw1);
         </script>
     </body>
 </html>
